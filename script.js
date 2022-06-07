@@ -1,3 +1,8 @@
+const getSection = document.querySelector('.items');
+// const createList = document.createElement('ul');
+// createList.className = 'list';
+// getSection.appendChild(createList);
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -20,7 +25,7 @@ const createProductItemElement = ({ sku, name, image }) => {
   section.appendChild(createCustomElement('span', 'item__title', name));
   section.appendChild(createProductImageElement(image));
   section.appendChild(createCustomElement('button', 'item__add', 'Adicionar ao carrinho!'));
-  console.log(section);
+  // console.log(section);
 
   return section;
 };
@@ -40,20 +45,21 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 const productsR = async () => {
-  const products = await fetchProducts('computador');
-  products.forEach((element) => {
-    createProductItemElement(
-      {
-        sku: element.id,
-        name: element.title,
-        image: element.thumbnail,
-      },
-    );
-  });
-  // const getSection = document.getElementsByClassName('items');
-  // const createList = document.createElement('ul');
-  // createList.className = 'list';
-  // getSection.appendChild(createList);
+  // try {
+    const products = await fetchProducts('computador');
+    products.forEach((element) => {
+      const productElement = createProductItemElement(
+        {
+          sku: element.id,
+          name: element.title,
+          image: element.thumbnail,
+        },
+      );
+      getSection.appendChild(productElement);
+    });
+  // } catch (error) {
+  //   console.log(`${error}`);
+  // }
 };
 
 window.onload = () => {
