@@ -32,6 +32,18 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 
 const cartItemClickListener = (event) => {
   // coloque seu código aqui
+  console.log(event.target);
+  const itemSelected = event.target.parentNode;
+  const itemToRemove = event.target;
+  itemSelected.removeChild(itemToRemove);
+};
+
+const clickAndRemove = () => {
+  const getClickRemove = document.querySelectorAll('.cart__items');
+  // console.log(getClickRemove);
+  getClickRemove.forEach((element) => {
+    element.addEventListener('click', cartItemClickListener);
+  });
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -51,7 +63,7 @@ const createProductCartItem = async (param) => {
       salePrice: itemToAddCart.price,
     },
   );
-  console.log(itemElement);
+  // console.log(itemElement);
   getCartItemList.appendChild(itemElement);
 };
 
@@ -59,14 +71,14 @@ const getIdFromClick = (event) => {
   // console.log(event.target);
   const itemSelected = event.target.parentNode;
   const itemSelectedId = getSkuFromProductItem(itemSelected);
-  console.log(itemSelectedId);
+  // console.log(itemSelectedId);
   createProductCartItem(itemSelectedId);
 };
 
-const clickAndAction = () => {
-  const getClick = document.querySelectorAll('.item__add');
+const clickAndAdd = () => {
+  const getClickAdd = document.querySelectorAll('.item__add');
   // console.log(getClick);
-  getClick.forEach((element) => {
+  getClickAdd.forEach((element) => {
     element.addEventListener('click', getIdFromClick);
   });
 };
@@ -83,7 +95,7 @@ const createElementProduct = async () => {
     );
     getSection.appendChild(productElement);
   });
-  clickAndAction();
+  clickAndAdd();
 };
 
 const productsR = () => {
