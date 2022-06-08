@@ -1,7 +1,5 @@
 const getSection = document.querySelector('.items');
-// const createList = document.createElement('ul');
-// createList.className = 'list';
-// getSection.appendChild(createList);
+const getCartItemList = document.querySelector('.cart__items');
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -44,22 +42,53 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-const productsR = async () => {
-  // try {
-    const products = await fetchProducts('computador');
-    products.results.forEach((element) => {
-      const productElement = createProductItemElement(
-        {
-          sku: element.id,
-          name: element.title,
-          image: element.thumbnail,
-        },
-      );
-      getSection.appendChild(productElement);
-    });
-  // } catch (error) {
-  //   console.log(`${error}`);
-  // }
+const createProductCartItem = async (param) => {
+  const itemToAddCart = await fetchItem(param);
+  const itemElement = createCartItemElement(
+    {
+      sku: itemToAddCart.id,
+      name: itemToAddCart.title,
+      salePrice: itemToAddCart.price,
+    },
+  );
+  console.log(itemElement);
+  getCartItemList.appendChild(itemElement);
+};
+
+const getIdFromClick = (event) => {
+  // console.log(event.target);
+  const itemSelected = event.target.parentNode;
+  const itemSelectedId = getSkuFromProductItem(itemSelected);
+  console.log(itemSelectedId);
+  createProductCartItem(itemSelectedId);
+};
+
+const clickAndAction = () => {
+  const getClick = document.querySelectorAll('.item__add');
+  // console.log(getClick);
+  getClick.forEach((element) => {
+    element.addEventListener('click', getIdFromClick);
+  });
+};
+
+const createElementProduct = async () => {
+  const products = await fetchProducts('computador');
+  products.results.forEach((element) => {
+    const productElement = createProductItemElement(
+      {
+        sku: element.id,
+        name: element.title,
+        image: element.thumbnail,
+      },
+    );
+    getSection.appendChild(productElement);
+  });
+  clickAndAction();
+};
+
+const productsR = () => {
+  createElementProduct();
+  // createProductCartItem();
 };
 
 window.onload = () => {
