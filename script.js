@@ -1,5 +1,6 @@
 const getSection = document.querySelector('.items');
 const getCartItemList = document.querySelector('.cart__items');
+const getEmptyButton = document.querySelector('.empty-cart');
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -37,6 +38,14 @@ const cartItemClickListener = (event) => {
   const itemToRemove = event.target;
   itemSelected.removeChild(itemToRemove);
 };
+
+const clickAndEmpty = () => {
+  while (getCartItemList.firstChild) {
+    getCartItemList.removeChild(getCartItemList.firstChild);
+  }
+};
+
+getEmptyButton.addEventListener('click', clickAndEmpty);
 
 const clickAndRemove = () => {
   const getClickRemove = document.querySelectorAll('.cart__items');
