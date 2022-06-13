@@ -44,7 +44,7 @@ const totalPrice = () => {
       .innerHTML.slice(currentValue.innerHTML.indexOf('$') + 1)),
     initialValue,
   );
-
+  
   createTotalPrice.innerHTML = total;
 };
 
@@ -90,6 +90,7 @@ const createProductCartItem = async (param) => {
     },
   );
   getCartItemList.appendChild(itemElement);
+  saveCartItems(getCartItemList.innerHTML);
   totalPrice();
 };
 
@@ -121,8 +122,19 @@ const createElementProduct = async () => {
   clickAndAdd();
 };
 
+// getSavedCart baseado no código e feito com a ajuda da amiga Camila Falaschi
+const getSavedCart = () => {
+  if (getSavedCartItems()) {
+    getCartItemList.innerHTML = getSavedCartItems();
+    getSavedCartItems();
+    clickAndRemove();
+    totalPrice();
+  }
+};
+
 const productsR = () => {
   createElementProduct();
+  getSavedCart();
 };
 
 window.onload = () => {
