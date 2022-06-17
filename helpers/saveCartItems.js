@@ -1,6 +1,6 @@
 const saveCartItems = (productList) => {
   // seu código aqui
-  console.log(productList);
+  // console.log(productList);
   localStorage.setItem('cartItems', productList);
 };
 

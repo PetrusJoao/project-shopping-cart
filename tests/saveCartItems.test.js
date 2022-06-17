@@ -6,7 +6,8 @@ localStorageSimulator('setItem');
 describe('3 - Teste a função saveCartItems', () => {
   // implemente seus testes aqui
   // fail('Teste vazio');
-
+  
+  // baseado no código e feito com a ajuda da amiga Camila Falaschi
   test('se ao executar saveCartItems com o argumento "<ol><li>Item</li></ol>", o método localStorage.setItem é chamado', () => {
     const itemSetOnLocalStorage = '<ol><li>Item</li></ol>';
     saveCartItems(itemSetOnLocalStorage);

@@ -1,7 +1,7 @@
 const getSavedCartItems = () => {
   // seu código aqui
     const itemStorage = localStorage.getItem('cartItems');
-    console.log(itemStorage);
+    // console.log(itemStorage);
     return itemStorage;
 };
 
