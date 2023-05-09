@@ -66,7 +66,6 @@ Nesse projeto foi posto em prática o desenvolvimento orientado a testes, TDD (T
 
 <details>
   <summary><strong>🎛 Linter</strong></summary><br />
-
 ### ESLint e Stylelint
 
 Para garantir a qualidade do código, utilizou-se neste projeto os linters `ESLint` e `Stylelint`.
